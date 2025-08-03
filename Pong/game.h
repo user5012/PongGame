@@ -1,5 +1,8 @@
+#pragma once
+
 #include"Audio.h"
 #include<SFML/Graphics.hpp>
+
 
 class game  
 {  
@@ -22,6 +25,7 @@ private:
        PlayingEasy,  
        PlayingHard  
    };  
+   sf::Font font;
    sf::RectangleShape createRect(sf::Vector2f size, sf::Vector2f position, sf::Color color);  
    std::unique_ptr<sf::Text> createText(sf::String txt, unsigned int fontSize, sf::Color color, sf::Vector2f position) const;
    sf::RectangleShape pad1;  
@@ -31,7 +35,7 @@ private:
    int pointsP1 = 0;  
    int pointsP2 = 0;  
    std::unique_ptr<sf::Text> WelcomeText, PlayHardText, PlayEasyText, TextPointsP1 ,TextPointsP2, winnerText, WordWinnerText, RestartText;
-   sf::Font font;  
+
    GameState state;  
    void gameLogic(float ballVelocity);  
    void resetBall() {  

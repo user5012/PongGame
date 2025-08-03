@@ -77,7 +77,7 @@ sf::RectangleShape game::createRect(sf::Vector2f size, sf::Vector2f position, sf
 }
 
 std::unique_ptr<sf::Text> game::createText(sf::String txt, unsigned int fontSize, sf::Color color, sf::Vector2f position) const {
-	auto text = std::make_unique<sf::Text>(txt, font, fontSize);
+	auto text = std::make_unique<sf::Text>(this->font, txt, fontSize);
 	text->setFillColor(color);
 	text->setPosition(position);
 	return text;
@@ -168,9 +168,11 @@ void game::wonGame(bool isPlayer1, sf::RenderWindow& wnd)
 	this->RestartText = createText("Press G to restart", 60, sf::Color::Black, { 150, 380 });
 	if (isPlayer1) {
 		this->winnerText = createText("WINNER : LIA", 60, sf::Color(255, 153, 255), { 220, 230 });
+		wnd.draw(*this->RestartText);
 	}
 	else {
 		this->winnerText = createText("WINNER : KYRMA", 60, sf::Color(102, 178, 255), { 170, 230 });
+		wnd.draw(*this->RestartText);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::G)) {
 		this->pointsP1 = 0;

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <SFML/Audio.hpp>
 
 class Audio  
@@ -6,14 +8,17 @@ public:
    Audio()  
        : soundHit(bufferHit), soundEnd(bufferEnd), soundWallHit(bufferWallHit)  
    {  
+	   if (!music.openFromFile("music.wav")) {
+		   throw std::runtime_error("Failed to load background_music.ogg");
+	   }
        // Load sound buffers  
-       if (!bufferHit.loadFromFile("hit.wav")) {  
+       if (!bufferHit.loadFromFile("colision.wav")) {  
            throw std::runtime_error("Failed to load hit.wav");  
        }  
-       if (!bufferEnd.loadFromFile("end.wav")) {  
+       if (!bufferEnd.loadFromFile("gameOver.wav")) {  
            throw std::runtime_error("Failed to load end.wav");  
        }  
-       if (!bufferWallHit.loadFromFile("wall_hit.wav")) {  
+       if (!bufferWallHit.loadFromFile("boardHit.wav")) {  
            throw std::runtime_error("Failed to load wall_hit.wav");  
        }  
        // No need to call setBuffer; already set by constructor  
